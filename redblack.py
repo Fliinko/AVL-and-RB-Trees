@@ -8,11 +8,11 @@ def generate(x, y):
 
     for i in range(n):
         i = random.randint(-3000, 3000)
-        x.add(i)
+        x.append(i)
 
     for j in range(m):
         j = random.randint(-3000, 3000)
-        y.add(j)
+        y.append(j)
 
     # print("Set X: \n", X)
     # print("Set Y: \n",  Y)
@@ -346,6 +346,72 @@ class Tree:
 
     def insert(self, key):
 
+        node = Node(key)
+        node.parent = None
+        node.data = key
+        node.left = self.TNULL
+        node.right = self.TNULL
+        node.colour = True #New node must be red
+
+        y = None
+        x = self.root
+
+        while x is not self.TNULL:
+
+            y = x
+            if node.data < x.data:
+                x = x.left
+
+            else:
+                x = x.right
+
+            node.parent = y
+
+            if y is None:
+                self.root = node
+
+            elif node.data < y.data:
+                y.left = node
+
+            else:
+                y.right = node
+
+            if node.parent is None:
+                node.colour = False
+                return
+
+            if node.parent.parent is None:
+                return
+
+            self.__insert_helper(node)
+
+    def getRoot(self):
+        return self.root
+
+    def delete(self, data):
+        self.__delete_helper(self.root, data)
+
+    def printer(self):
+        self.__print_helper(self.root, "", True)
 
 
+if __name__ == "__main__":
+    rbt = Tree()
+
+    a = []
+    b = []
+
+    generate(a, b)
+
+    print("Inserting from Set A\n")
+    for x in range(a.__len__()):
+        rbt.insert(a[x])
+
+    rbt.printer()
+
+    print("Deleting from Set Y\n")
+    for y in range(b.__len__()):
+        rbt.delete(b[x])
+
+    rbt.printer()
 
