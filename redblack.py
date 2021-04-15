@@ -389,7 +389,7 @@ class Tree:
         return self.root
 
     def delete(self, data):
-        self.__delete_helper(self.root, data)
+        self.__node_delete(self.root, data)
 
     def printer(self):
         self.__print_helper(self.root, "", True)
@@ -411,7 +411,9 @@ if __name__ == "__main__":
 
     print("Deleting from Set Y\n")
     for y in range(b.__len__()):
-        rbt.delete(b[x])
+        rbt.delete(b[y])
 
     rbt.printer()
+
+    print("Process Complete")
 
