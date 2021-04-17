@@ -30,31 +30,75 @@ class AVL:
 
     def __print_helper(self, pointer, indent, last):
 
-    def __preorder_helper(self, node):
+    def __pre_order_helper(self, node):
         if node != self.TNULL:
             sys.stdout.write(node.data + "")
             self.__preorder_helper(node.left)
             self.__preorder_helper(node.right)
 
-    def __inorder_helper(self, node):
+    def __in_order_helper(self, node):
         if node != self.TNULL:
             self.__inorder_helper(node.left)
             sys.stdout.write(node.data + " ")
             self.__inorder_helper(node.right)
 
-    def __postorder_helper(self, node):
+    def __post_order_helper(self, node):
         if node != self.TNULL:
             self.__postorder_helper(node.left)
             self.__postorder_helper(node.right)
             sys.stdout.write(node.data + " ")
 
     def insert(self, root, key):
+        if not root:
+            return Node(key)
+
+        elif key < root.key:
+            root.left = self.insert(root.left, key)
+
+        else:
+            root.right = self.insert(root.right, key)
+
+        root.height = 1 + max(self.getHeight(root.left), self.getHeight(root.right))
+
+        balance = self.getBalance(root)
+
+        if balance > 1:
+            if key < root.left.key:
+                return self.rightrotate(root)
+
+            else:
+                root.left = self.leftrotate(root.left)
+                return self.rightrotate(root)
+
+        if balance < -1:
+            if key > root.right.key:
+                return self.leftrotate(root)
+
+            else:
+                root.right = self.rightrotate(root.right)
+                return self.leftrotate(root)
+
+        return root
+
+    def getBalance(self, root):
+        if not root:
+            return 0
+        return self.getHeight(root.left) - self.getHeight(root.right)
+
+    def getHeight(self, root):
+        if not root:
+            return 0
+        return root.height
 
     def delete(self, root, key):
 
     def leftrotate(self, x):
 
+        return 0
+
     def righrotate(self, x):
+
+        return 0
 
     def preorder(self):
         self.__preorder_helper(self.root)
