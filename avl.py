@@ -18,6 +18,7 @@ def generate(x, y):
 
     return False
 
+
 class Node:
 
     def __init__(self, data):
@@ -26,27 +27,43 @@ class Node:
         self.right = None
         self.height = 1
 
-class AVL:
 
-    def __print_helper(self, pointer, indent, last):
+class Tree:
 
     def __pre_order_helper(self, node):
-        if node != self.TNULL:
+        if node is not None:
             sys.stdout.write(node.data + "")
-            self.__preorder_helper(node.left)
-            self.__preorder_helper(node.right)
+            self.__pre_order_helper(node.left)
+            self.__pre_order_helper(node.right)
 
     def __in_order_helper(self, node):
-        if node != self.TNULL:
-            self.__inorder_helper(node.left)
+        if node is not None:
+            self.__in_order_helper(node.left)
             sys.stdout.write(node.data + " ")
-            self.__inorder_helper(node.right)
+            self.__in_order_helper(node.right)
 
     def __post_order_helper(self, node):
-        if node != self.TNULL:
-            self.__postorder_helper(node.left)
-            self.__postorder_helper(node.right)
+        if node is not None:
+            self.__post_order_helper(node.left)
+            self.__post_order_helper(node.right)
             sys.stdout.write(node.data + " ")
+
+    def printer(self, pointer, indent, last):
+        if pointer is not None:
+            sys.stdout.write(indent)
+
+            if last:
+                sys.stdout.write("R----")
+                indent += "     "
+
+            else:
+                sys.stdout.write("L----")
+                indent += "|    "
+
+            print(pointer.key)
+
+            self.printer(pointer.left, indent, False)
+            self.printer(pointer.right, indent, True)
 
     def insert(self, root, key):
         if not root:
@@ -141,7 +158,6 @@ class AVL:
 
         return root
 
-
     def getMin(self, root):
         if root is None or root.left is None:
             return root
@@ -150,23 +166,48 @@ class AVL:
 
     def leftrotate(self, x):
 
-        return 0
+        y = x.right
+        turn = y.left
+        y.left = x
+        x.right = turn
+
+        x.height = 1 + max(self.getHeight(x.left), self.getHeight(x.right))
+        y.height = 1 + max(self.getHeight(y.left), self.getHeight(y.right))
+
+        return y
 
     def righrotate(self, x):
 
-        return 0
+        y = x.left
+        turn = y.right
+        y.right = x
+        x.left = turn
 
-    def preorder(self):
-        self.__preorder_helper(self.root)
+        x.height = 1 + max(self.getHeight(x.left), self.getHeight(x.right))
+        y.height = 1 + max(self.getHeight(y.left), self.getHeight(y.right))
 
-    def inorder(self):
-        self.__inorder_helper(self.root)
+        return y
 
-    def postorder(self):
-        self.__postorder_helper(self.root)
 
 if __name__ == "__main__":
 
-    x, y = []
+    avl = Tree()
 
-    generate(x, y)
+    a = []
+    b = []
+
+    generate(a, b)
+
+    print("Inserting from Set A\n")
+    for x in range(a.__len__()):
+        avl.insert(a[x])
+
+    avl.printer()
+
+    print("Deleting from Set Y\n")
+    for y in range(b.__len__()):
+        avl.delete(b[y])
+
+    avl.printer()
+
+    print("Process Complete")
