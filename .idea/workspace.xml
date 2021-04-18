@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="be3e7355-5728-4964-b279-f09adc8fd745" name="Default Changelist" comment="">
+    <list default="true" id="be3e7355-5728-4964-b279-f09adc8fd745" name="Default Changelist" comment="Added Rotations and Printer">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/avl.py" beforeDir="false" afterPath="$PROJECT_DIR$/avl.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/redblack.py" beforeDir="false" afterPath="$PROJECT_DIR$/redblack.py" afterDir="false" />
@@ -87,7 +87,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618753810163</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added Rotations and Printer">
+      <created>1618755068773</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1618755068773</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -110,6 +117,7 @@
     <MESSAGE value="AVL Update" />
     <MESSAGE value="Added insert to AVL" />
     <MESSAGE value="Delete algorithm added to AVL" />
-    <option name="LAST_COMMIT_MESSAGE" value="Delete algorithm added to AVL" />
+    <MESSAGE value="Added Rotations and Printer" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Rotations and Printer" />
   </component>
 </project>

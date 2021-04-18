@@ -1,18 +1,20 @@
-import random
+from random import randint
 import sys
 
 
-def generate(x, y):
-    n = random.randint(1000, 3000)
-    m = random.randint(500, 1000)
+def generate(setx, sety, setz):
 
-    for i in range(n):
-        i = random.randint(-3000, 3000)
-        x.append(i)
+    for i in range(setx):
+        i = randint(-3000, 3000)
+        setx.append(i)
 
-    for j in range(m):
-        j = random.randint(-3000, 3000)
-        y.append(j)
+    for j in range(sety):
+        j = randint(-3000, 3000)
+        sety.append(j)
+
+    for w in range(setz):
+        w = randint(-3000, 3000)
+        setz.append(w)
 
     # print("Set X: \n", X)
     # print("Set Y: \n",  Y)
@@ -398,22 +400,32 @@ class Tree:
 if __name__ == "__main__":
     rbt = Tree()
 
-    a = []
-    b = []
+    numn = randint(1000, 3000)
+    numm = randint(500, 1000)
+    numk = randint(1000, 2000)
 
-    generate(a, b)
+    n = [None] * numn
+    m = [None] * numm
+    k = [None] * numk
+
+    generate(n, m, k)
 
     print("Inserting from Set A\n")
-    for x in range(a.__len__()):
-        rbt.insert(a[x])
+    for x in range(n.__len__()):
+        rbt.insert(n[x])
 
     rbt.printer()
 
     print("Deleting from Set Y\n")
-    for y in range(b.__len__()):
-        rbt.delete(b[y])
+    for y in range(m.__len__()):
+        rbt.delete(m[y])
 
     rbt.printer()
 
+    print("Seraching from Set Z\n")
+    for z in range(k.__len__()):
+        rbt.searchtree(k[z])
+
     print("Process Complete")
+
 

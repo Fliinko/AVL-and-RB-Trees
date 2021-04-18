@@ -1,17 +1,20 @@
-import random
+from random import randint
 import sys
 
-def generate(x, y):
-    n = random.randint(1000, 3000)
-    m = random.randint(500, 1000)
 
-    for i in range(n):
-        i = random.randint(-3000, 3000)
-        x.append(i)
+def generate(setx, sety, setz):
 
-    for j in range(m):
-        j = random.randint(-3000, 3000)
-        y.append(j)
+    for i in range(setx):
+        i = randint(-3000, 3000)
+        setx.append(i)
+
+    for j in range(sety):
+        j = randint(-3000, 3000)
+        sety.append(j)
+
+    for w in range(setz):
+        w = randint(-3000, 3000)
+        setz.append(w)
 
     # print("Set X: \n", X)
     # print("Set Y: \n",  Y)
@@ -193,21 +196,30 @@ if __name__ == "__main__":
 
     avl = Tree()
 
-    a = []
-    b = []
+    numn = randint(1000, 3000)
+    numm = randint(500, 1000)
+    numk = randint(1000, 2000)
 
-    generate(a, b)
+    n = [None] * numn
+    m = [None] * numm
+    k = [None] * numk
+
+    generate(n, m, k)
 
     print("Inserting from Set A\n")
-    for x in range(a.__len__()):
-        avl.insert(a[x])
+    for x in range(n.__len__()):
+        avl.insert(n[x])
 
     avl.printer()
 
     print("Deleting from Set Y\n")
-    for y in range(b.__len__()):
-        avl.delete(b[y])
+    for y in range(m.__len__()):
+        avl.delete(m[y])
 
     avl.printer()
+
+    print("Searching from Set Z\n")
+    for z in range(k.__len__()):
+        #avl.search(k[z])
 
     print("Process Complete")
