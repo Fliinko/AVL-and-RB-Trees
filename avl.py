@@ -92,6 +92,62 @@ class AVL:
 
     def delete(self, root, key):
 
+        if not root:
+            return root
+
+        elif key < root.key:
+            root.left = self.delete(root.left, key)
+
+        elif key > root.key:
+            root.right = self.delete(root.right, koey)
+
+        else:
+            if root.left is None:
+                temp = root.right
+                root = None
+                return temp
+
+            elif root.right is None:
+                temp = root.left
+                root = None
+                return temp
+
+            temp = self.getMin(root.right)
+            root.key = temp.key
+            root.right = self.delete(root.right, temp.key)
+
+        if root is None:
+            return root
+
+        root.height = 1 + max(self.getHeight(root.left), self.getHeight(root.right))
+
+        balance = self.getBalance(root)
+
+        if balance > 1:
+            if self.getBalance(root.left) >= 0:
+                return self.rightrotate(root)
+
+            else:
+                root.left = self.leftrotate(root.left)
+                return self.rightrotate(root)
+
+        if balance < -1:
+            if self.getBalance(root.right) <= 0:
+                return self.leftrotate(root)
+
+            else:
+                root.right = self.rightrotate(root.right)
+                return self.leftrotate(root)
+
+        return root
+
+
+    def getMin(self, root):
+        if root is None or root.left is None:
+            return root
+
+        return self.getMin(root.left)
+
     def leftrotate(self, x):
 
         return 0
